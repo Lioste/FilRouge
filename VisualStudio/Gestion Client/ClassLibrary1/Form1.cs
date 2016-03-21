@@ -16,6 +16,8 @@ namespace ClassLibrary1
         public Form1()
         {
             InitializeComponent();
+            TB_IDContact.Hide();
+            TB_IDContact.Enabled = false;
         }
         int Switch = 0;
         Client c = new Client();
@@ -183,27 +185,142 @@ namespace ClassLibrary1
             switch(Switch)
             {
                 case 1:
-                    TBversClient();
-                    InitializeRepo().Insert(c);
-                    ActivationObjet();
-                    VidageTBpourAjout();
-                    ActivationObjet();
-                    DesactivationObjetCache();
-                    Switch = 0;
-                    listBox1.Enabled = true;
-                    InitializeLB_ListeNom();
-                    //InitializeCB_ContactClientListNom();
-                    DiminuerFenetre();
+                    if (TB_Nom.TextLength > 0 && TB_Nom.TextLength < 100)
+                    {
+                        int Compteur = 0;
+                        bool Continuer = true;
+                        while(Continuer)
+                        {
+                            if (TB_Nom.Text[Compteur] > 96 && TB_Nom.Text[Compteur] < 123 || TB_Nom.Text[Compteur] > 64 && TB_Nom.Text[Compteur] < 91)
+                                Compteur++;
+                            else
+                                Continuer = false;
+                            if(Compteur == TB_Nom.TextLength)
+                                Continuer = false;
+
+                        }
+                        if(Compteur == TB_Nom.TextLength)
+                        {
+                            if (TB_Coef.TextLength == 5)
+                            {
+                                Compteur = 0;
+                                Continuer = true;
+                                while(TB_Coef.TextLength > Compteur && Continuer)
+                                {
+                                    if (TB_Coef.Text[Compteur] > 47 && TB_Coef.Text[Compteur] < 58 && Compteur != 2)
+                                        Compteur++;
+                                    else if (TB_Coef.Text[Compteur] == 44 && Compteur == 2)
+                                        Compteur++;
+                                    else
+                                        Continuer = false;
+                                }
+                                if (Continuer && Convert.ToDecimal(TB_Coef.Text) <= 1 && Convert.ToDecimal(TB_Coef.Text) >= 0 )
+                                {
+
+                                    
+                                    //if(TB_Coef.TextLength == 3)
+                                    //    while(Compteur)
+                                    TBversClient();
+                                    InitializeRepo().Insert(c);
+                                    ActivationObjet();
+                                    VidageTBpourAjout();
+                                    ActivationObjet();
+                                    DesactivationObjetCache();
+                                    Switch = 0;
+                                    listBox1.Enabled = true;
+                                    InitializeLB_ListeNom();
+                                    //InitializeCB_ContactClientListNom();
+                                    DiminuerFenetre();
+                                }
+                                else 
+                                    MessageBox.Show("Erreur,Veuillez saisir un nombre plus petit ou egal a 1 et plus grand ou egal a 0(Exemple : 00,50)");
+                            }
+                            else
+                            {
+                                if (TB_Coef.TextLength == 0)
+                                    MessageBox.Show("Aucun Coefficient  de saisie ");
+                                if (TB_Coef.TextLength != 5)
+                                    MessageBox.Show("Saisie Coefficient incorrecte \n veuillez respecter le format: [00,00]");
+
+                            }
+                        }
+                        else
+                            MessageBox.Show("Caractere illicite a la place "+(Compteur + 1)+" le '"+ TB_Nom.Text[Compteur]+"' est interdit");
+
+                    }
+                    else
+                    {
+                        if (TB_Nom.TextLength == 0)
+                            MessageBox.Show("Aucun nom de saisie ");
+                        if(TB_Nom.TextLength >= 100)
+                            MessageBox.Show("Saisie Trop Longue ");
+
+                    }
                     break;
                 case 2:
-                    InitializeRepo().Update(c, TB_Nom.Text, Convert.ToDecimal(TB_Coef.Text), /*TB_IDContact.Text*/Convert.ToString(CB_ContactClient.SelectedValue), Convert.ToInt32(Label_IDClient.Text));
-                    ActivationObjet();
-                    DiminuerFenetre();
-                    DesactivationObjetCache();
-                    InitializeLB_ListeNom();
-                    //InitializeCB_ContactClientListNom();
-                    listBox1.Enabled = true;
-                    Switch = 0;
+                    if (TB_Nom.TextLength > 0 && TB_Nom.TextLength < 100)
+                    {
+                        int Compteur = 0;
+                        bool Continuer = true;
+                        while (Continuer)
+                        {
+                            if (TB_Nom.Text[Compteur] > 96 && TB_Nom.Text[Compteur] < 123 || TB_Nom.Text[Compteur] > 64 && TB_Nom.Text[Compteur] < 91)
+                                Compteur++;
+                            else
+                                Continuer = false;
+                            if (Compteur == TB_Nom.TextLength)
+                                Continuer = false;
+
+                        }
+                        if (Compteur == TB_Nom.TextLength)
+                        {
+                            if (TB_Coef.TextLength == 5)
+                            {
+                                Compteur = 0;
+                                Continuer = true;
+                                while (TB_Coef.TextLength > Compteur && Continuer)
+                                {
+                                    if (TB_Coef.Text[Compteur] > 47 && TB_Coef.Text[Compteur] < 58 && Compteur != 2)
+                                        Compteur++;
+                                    else if (TB_Coef.Text[Compteur] == 44 && Compteur == 2)
+                                        Compteur++;
+                                    else
+                                        Continuer = false;
+                                }
+                                if (Continuer && Convert.ToDecimal(TB_Coef.Text) <= 1 && Convert.ToDecimal(TB_Coef.Text) >= 0)
+                                {
+                                    InitializeRepo().Update(c, TB_Nom.Text, Convert.ToDecimal(TB_Coef.Text), /*TB_IDContact.Text*/Convert.ToString(CB_ContactClient.SelectedValue), Convert.ToInt32(Label_IDClient.Text));
+                                    ActivationObjet();
+                                    DiminuerFenetre();
+                                    DesactivationObjetCache();
+                                    InitializeLB_ListeNom();
+                                    //InitializeCB_ContactClientListNom();
+                                    listBox1.Enabled = true;
+                                    Switch = 0;
+                                }
+                                else 
+                                    MessageBox.Show("Erreur,Veuillez saisir un nombre plus petit ou egal a 1 et plus grand ou egal a 0(Exemple : 00,50)");
+                            }
+                            else
+                            {
+                                if (TB_Coef.TextLength == 0)
+                                    MessageBox.Show("Aucun Coefficient  de saisie ");
+                                if (TB_Coef.TextLength != 5)
+                                    MessageBox.Show("Saisie Coefficient incorrecte \n veuillez respecter le format: [00,00]");
+                            }
+                        }
+                        else
+                            MessageBox.Show("Caractere illicite a la place "+(Compteur + 1)+" le '"+ TB_Nom.Text[Compteur]+"' est interdit");
+
+                    }
+                    else
+                    {
+                        if (TB_Nom.TextLength == 0)
+                            MessageBox.Show("Aucun nom de saisie ");
+                        if(TB_Nom.TextLength >= 100)
+                            MessageBox.Show("Saisie Trop Longue ");
+
+                    }
                     break;
                 case 3:
                     B_Valider.Enabled = true;

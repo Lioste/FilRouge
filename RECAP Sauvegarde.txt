@@ -1,0 +1,79 @@
+--------------------------------------------------------------
+----------------- SAUVEGARGE -----------------
+--------------------------------------------------------------
+-- http://msdn.microsoft.com/fr-fr/library/ms191253.aspx
+-- http://blog.developpez.com/sqlpro/p7220/langage-sqlnorme/sauvegardes-avec-sql-server/
+-- Possiblité de voir le script généré par sql server
+-- Modifier le mode de recuperation
+-- Mode de récupération simple : sauvegarde complet et
+differentielles sans les journaux transactionnels
+-- Mode de récupération complète
+alter database recap set recovery FULL --full / bulk_logged /
+simple
+--sauvegarde directe
+BACKUP DATABASE recap TO DISK = 'C:\test\backup'
+--Sauvegarde sur unité de sauvegarde
+-- Il faut créer une unité de sauvegarde 'savRecap' (on peut
+aussi sauvegarder dans un fichier - voir backup database)
+exec sp_addumpdevice 'disk','savRecap','C:\tmp\recap.bak'; --
+disk /tape
+-- Supression d'une unité de sauvegarde
+exec sp_dropdevice savRecap;
+--------------------
+--- Sauvegarde
+--------------------
+-- L'option reinitialise l'historique des sauvegardes de ->
+restore headeronly from savRecap - cf en dessous
+backup database recap to savRecap with init ,Name = 'Dimanche
+18h', description = 'Complète 1' -- Backup complet
+
+backup log recap to savRecap with description = 'Journal 1' ,
+Name = 'Lundi 9h'; -- Backup des fichiers journaux
+
+backup log recap to savRecap with description = 'Journal 2' ,
+Name = 'Lundi 12h';
+
+backup database recap to savRecap with differential,
+description = 'Différentielle 1',Name = 'Lundi 18h' ; --
+Backup Differentiel
+
+backup log recap to savRecap with description = 'Journal 1' ,
+Name = 'Mardi 9h'; -- Backup des fichiers journaux
+
+backup log recap to savRecap with description = 'Journal 2' ,
+Name = 'Mardi 12h';
+
+backup database recap to savRecap with differential,
+description = 'Différentielle 2',Name = 'Mardi 18h' 
+------------------------------------
+-- Processus complet de restauration
+------------------------------------
+-- Informations concernant une sauvegarde à vérifier avant
+restauration
+restore headeronly from savRecap
+restore filelistonly from savRecap
+
+-- Mettre en mode restreint
+alter database recap set restricted_user with rollback
+immediate
+-- ROLLBACK AFTER <em>n</em> SECONDS --equivalent avant
+attente de x secondes
+-- L'option NO WAIT permet de passer en utilisateur unique
+immédiatement si aucune transaction n'est en cour
+-- sauvegarde du journal de transaction en cours
+-- backup log recap to savRecap with no_truncate,norecovery --
+Sauvegarde du journal quand la base est corromptu
+backup log recap to savRecap with norecovery
+-- Restauration (Plantage mardi à 10h)
+alter database recap set restricted_user with rollback
+immediate
+restore database recap from savrecap with file=1, norecovery
+restore database recap from savrecap with file=4, norecovery;
+restore log recap from savrecap with file = 5, recovery
+--recovery met fin a la restauration
+-- annuler le mode restreint
+alter database recap set multi_user
+-- voir aussi
+-- SQL Server : Restaurer une base de données à la
+milliseconde près (RESTORE LOG WITH STOPAT)
+-- http://blogs.codessources.com/christian/archive/2007/10/28/sql-server-restaurerune-base-de-donn-es-la-milliseconde-pr-s-restore-log-withstopat.aspx
