@@ -49,8 +49,8 @@ namespace ClassLibrary1
                 SqlConnection _connect;
                 _connect = new SqlConnection("server=(local); integrated security = true; database = Fil_Rouge");
                 _connect.Open();
-                SqlCommand requete = new SqlCommand("delete from Client WHERE IDClient = " + TB4, _connect);
-                //requete.Parameters.Remove(requete);
+                SqlCommand requete = new SqlCommand("delete from Client WHERE IDClient = @IDClient", _connect);
+                requete.Parameters.AddWithValue("@IDClient", TB4);
                 requete.ExecuteNonQuery();
 
                 _connect.Close();
