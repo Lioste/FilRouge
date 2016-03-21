@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="65c4ec36-7f9d-45cd-acfd-5914b4f82cde" name="Activity1" linkedPackageId="1bb176e8-6151-4220-9955-cb330a3d5c8a" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="0e877d6c-740f-4e34-9723-aec2debb2dc4">
+      <profileInstance Id="fe556e35-cf09-49cc-b6d7-5eddb3e7ace8" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="fd543ecb-d344-46b8-87fa-4f903a0a577f">
+      <profileInstance Id="1d46b616-8e1a-4de6-85fc-8ee2e1f6a511" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="49b8630e-9e16-4335-b781-0f71bd57bdef" name="Activity1" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="828d2eb9-37af-4401-9f01-967176356c03" />
+        <nodes>
+          <initialNode Id="468e945e-ae72-49a0-9c34-30547f0e6246" name="Initial1" isLeaf="false">
+            <elementDefinition Id="f1df833e-5e21-4ab7-b435-6c398b5b87fd" />
+            <flowNodeTargets>
+              <controlFlow Id="ea91c2bc-3d1b-4ce9-80de-82dcfa1d6a59" isLeaf="false">
+                <opaqueActionMoniker Id="4a152777-d965-47a4-b963-f5077f68ea41" LastKnownName="Client se connecte à son compte" />
+                <elementDefinition Id="63e20619-2c85-4e88-ab0f-25693d963f8f" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <activityFinalNode Id="051c3770-c8ad-4508-af02-b21c2443de19" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="35930800-16ad-4502-b42d-39897ac75437" />
+          </activityFinalNode>
+          <opaqueAction Id="4a152777-d965-47a4-b963-f5077f68ea41" name="Client se connecte à son compte" isLeaf="false">
+            <elementDefinition Id="269f0501-813a-404b-bad9-90f16bc84de3" />
+            <flowNodeTargets>
+              <controlFlow Id="50bf23ee-7c59-4255-b080-c1adc92df28b" isLeaf="false">
+                <opaqueActionMoniker Id="c75099ac-bd7f-4b28-8fbb-d25ef16eaeee" LastKnownName="Selection des produits" />
+                <elementDefinition Id="e08b82c6-cc30-4fc2-8f68-fc0b04e025b5" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="c75099ac-bd7f-4b28-8fbb-d25ef16eaeee" name="Selection des produits" isLeaf="false">
+            <elementDefinition Id="b128f4c0-5d2e-4cba-abb9-cbabbf1918a4" />
+            <flowNodeTargets>
+              <controlFlow Id="1abbf6fa-d550-4922-b17d-7d47701fc669" isLeaf="false">
+                <opaqueActionMoniker Id="c75099ac-bd7f-4b28-8fbb-d25ef16eaeee" LastKnownName="Selection des produits" />
+                <elementDefinition Id="ae820558-7562-420c-a9c2-d27cb68e3663" />
+              </controlFlow>
+              <controlFlow Id="8a4af971-b5f6-4ea7-95be-3a6ade841248" isLeaf="false">
+                <opaqueActionMoniker Id="65086d62-9bd6-4410-8baf-2cd0f85c2e77" LastKnownName="Valide Liste des produit" />
+                <elementDefinition Id="d8b48c00-c43b-48ea-90a8-bd7d8710a74a" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="65086d62-9bd6-4410-8baf-2cd0f85c2e77" name="Valide Liste des produit" isLeaf="false">
+            <elementDefinition Id="a25168b8-059b-4a61-855f-c552e7bd94e5" />
+            <flowNodeTargets>
+              <controlFlow Id="fb242dbb-14a6-4d82-a10e-9f1ef6278afb" isLeaf="false">
+                <opaqueActionMoniker Id="4da41e20-24c2-48e5-b27b-3950fb5b9738" LastKnownName="Negociation  Reduction" />
+                <elementDefinition Id="1d7c21b7-8f06-46ce-a0c0-347048cb3f05" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="539a49b5-272d-4d25-84ac-6da7bd44be00" name="Service commercial verifie le statut du client (et  que le reglement est effectue)" isLeaf="false">
+            <elementDefinition Id="582f22c7-bf97-4ff7-97ea-1d58dd8baa1a" />
+            <flowNodeTargets>
+              <controlFlow Id="05ffefe1-498e-48f7-a40f-c0c95b31ea97" isLeaf="false">
+                <joinNodeMoniker Id="74b2bc4a-8423-4864-a4a4-26d59c67c2f5" LastKnownName="Join1" />
+                <elementDefinition Id="2e60bdaf-f90a-4fc9-a97e-fc881c004778" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <joinNode Id="74b2bc4a-8423-4864-a4a4-26d59c67c2f5" name="Join1" isLeaf="false">
+            <elementDefinition Id="cf2da623-b84c-40fd-afa9-27ac85d5e061" />
+            <flowNodeTargets>
+              <controlFlow Id="52c911fb-0c88-4410-b0e0-1fe3fb8f82f1" isLeaf="false">
+                <opaqueActionMoniker Id="9a19504d-b6a7-4079-a49b-6bb561d20e5b" LastKnownName="le systeme passe la commande a l etat de preparation" />
+                <elementDefinition Id="52b61282-bae7-4541-9024-6354896e579a" />
+              </controlFlow>
+            </flowNodeTargets>
+          </joinNode>
+          <opaqueAction Id="8d494f4a-bc17-4bcf-97c4-3bb74da6b322" name="(optionnelle)  Reglement Commande" isLeaf="false">
+            <elementDefinition Id="ff6d903a-3b1a-4c0e-9e2e-072e7c76a9f4" />
+            <flowNodeTargets>
+              <controlFlow Id="8d49820d-a70f-4ad0-bfd9-36c43b5d78cb" isLeaf="false">
+                <joinNodeMoniker Id="74b2bc4a-8423-4864-a4a4-26d59c67c2f5" LastKnownName="Join1" />
+                <elementDefinition Id="41c59b76-dc7e-45bd-babe-adbc2a944b20" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="9a19504d-b6a7-4079-a49b-6bb561d20e5b" name="le systeme passe la commande a l etat de preparation" isLeaf="false">
+            <elementDefinition Id="285c8623-1660-4266-9920-03eca16d7473" />
+            <flowNodeTargets>
+              <controlFlow Id="5537da75-57ee-4dbe-896c-ce1261b05bd5" isLeaf="false">
+                <activityFinalNodeMoniker Id="051c3770-c8ad-4508-af02-b21c2443de19" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="9674541d-87af-44e5-83a3-54184755ea8b" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="4da41e20-24c2-48e5-b27b-3950fb5b9738" name="Negociation  Reduction" isLeaf="false">
+            <elementDefinition Id="8782701e-b91e-4cb3-8997-4df5c1a195a6" />
+            <flowNodeTargets>
+              <controlFlow Id="6cc142b0-2d1e-45d9-8ba3-1c9b5b051a6b" isLeaf="false">
+                <opaqueActionMoniker Id="8d494f4a-bc17-4bcf-97c4-3bb74da6b322" LastKnownName="(optionnelle)  Reglement Commande" />
+                <elementDefinition Id="7a58d9fa-9fb3-4cf2-891e-a50ed21bcda2" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="1bb176e8-6151-4220-9955-cb330a3d5c8a" name="ModelingProject1">
+    <elementDefinition Id="749f0646-8714-4980-8ae6-dcafcfd9c165" />
+  </package>
+</activityRootModel>

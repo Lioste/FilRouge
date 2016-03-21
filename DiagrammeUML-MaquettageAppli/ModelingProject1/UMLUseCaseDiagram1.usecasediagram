@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" dslVersion="1.0.0.0" Id="57b8a16c-6226-4cc7-9136-d9ed95ba41d2" name="UMLUseCaseDiagram1" linkedPackageId="f851ab11-96b0-4290-841e-695e7f30cd6c" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <ownedCommentsInternal>
+    <comment Id="6fa5a755-6e08-4c54-9c3b-3bfb9f2ffea2">
+      <elementDefinition Id="70c1c04d-504c-4039-b79a-19be45cd5dea" />
+      <body>Description : 
+L'utilisateur crée une commande , entre les produits,en supprime,le service client valide  
+
+
+
+WorkFlow:
+
+
+
+Condition ) Utilisateur enregistre
+	produit enregistre
+si le client est particulier ,alors il faut regler la commande au moment de la validation
+adresse de facturation et de livraison
+
+
+
+Resultat )Crée une commande
+	crée une facture
+	crée une adresse de livraison  
+
+
+Flot Nominal:
+
+
+
+DEBUT Le client se connecte à sa session
+	il choisis,depuis un bouton ajouter, dans 	le catalogue des produits, il valide ensuite le choix de la liste des produits ,informe l'adresse de livraison et de facturation, cette liste est ensuite soumise au service commercial qui va negocier une eventuelle reduction et  valide la commande, passe sont statut à " en préparation". Le systeme crée alors un bon de commande , et un bon de livraison 
+	
+
+
+FIN
+
+Flot alternatif :
+
+DEBUT 
+
+le client se connecte , il ne possede pas de compte sur le site , donc il passe d'abord par l'inscription, une fois l'inscription valide, il peut se connecter au site 
+
+Il ouvre ensuite le catalogue et choisit les produit avec le bouton ajouter , le produit ajouter n'est pas en stock, on rapelleras a la fin de la commande a l'utilisateur que l'un ou plusieurs des produits de la listes ne sont pas disponible dans l'immediat et que si il valide la commande les produits non en stock seront expedié des qu'ils le seront! Le client valide ça liste , le systeme lui demande alors ces coordonées de facturation et de livraison
+
+La commande et ça liste de produit est envoyé au service commercial , qui si le client est un particulier , verifie que la commande a etait réglé , si elle ne l'est pas il annule la commmande ,sinon il met a jour le statue en "En préparation"
+FIN</body>
+      <annotatedElements>
+        <useCaseMoniker Id="9930d45c-f1b7-46f0-9336-56981b663489" LastKnownName="Création de commande/remplissage" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="80c98cff-9301-44e2-8958-c3d4982d864b">
+      <profileInstance Id="fc8cbe8e-4ba2-4ef4-a89b-563e0fa9c56a" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="68fd9032-1c74-43ff-9c57-87a6f1ab852d">
+      <profileInstance Id="e7ca332d-7100-4a0b-a0e1-7a908e8ca3eb" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <actor Id="0535b074-33de-4ec2-b7e8-96da18ce5c4a" name="Service Fournisseur" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="fdc14e07-7e04-4f31-9b6c-2baa1007d365" />
+        <targetEnds>
+          <association Id="5c2fc919-ef65-44a2-90a5-9d4443cd4484" isDerived="false" sourceEndRoleName="Service Fournisseur" targetEndRoleName="Modification Catalogue" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="3d5c9e0e-4d17-489b-85c5-9d1bd8719b89" LastKnownName="Modification Catalogue" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e2bcc7b5-47e3-4bd8-bec9-b7b92aa4ddf4" name="Service Fournisseur" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="f54c790f-01a2-4c05-ad3a-646b80a2136a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="25399493-1f6f-42e2-92fa-9ef17dec38e1" name="Modification Catalogue" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="8787e067-55f4-4db7-aeff-e149e836ee16" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="cf26e80a-7f54-4c72-89a5-57c582a6139b" />
+          </association>
+          <association Id="4f74d744-7d32-4bed-b686-4a252f2134cf" isDerived="false" sourceEndRoleName="Service Fournisseur" targetEndRoleName="Consultation  Catalogue" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="45551fa4-0d65-4752-b4c5-6d55628b8677" LastKnownName="Consultation  Catalogue" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="3d2c6cd5-759e-4d04-8d3e-f1de1d593bc6" name="Service Fournisseur" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="9fad1528-137a-4657-af3a-f4bab78d85c0" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="22733c68-4508-4e82-9668-00332297ff14" name="Consultation  Catalogue" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="16d4b1cf-3e6f-498c-adc6-966fafe30561" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="e03427c1-c39f-4679-9cce-5eb3f9f7d9c2" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="3d5c9e0e-4d17-489b-85c5-9d1bd8719b89" name="Modification Catalogue" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="1d12ced0-4b7b-4835-b0c9-75a262f25f0b" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="b8883165-52cc-48c4-ac03-e36d5a13558a" name="Client" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="f634dd65-62fc-458c-ad79-2fa4cd907f92" />
+        <targetEnds>
+          <association Id="9f12453c-662f-4d92-b762-1091240cef89" isDerived="false" sourceEndRoleName="Client" targetEndRoleName="Consultation  Catalogue" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="45551fa4-0d65-4752-b4c5-6d55628b8677" LastKnownName="Consultation  Catalogue" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="7567f7fb-64f0-4e3a-bbbb-bafc940270c8" name="Client" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="6772897a-acaa-4dcb-8dd0-cbd34ffcc2da" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="51e80afe-4e0e-41e2-af1a-b23fbdf309fc" name="Consultation  Catalogue" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="f9f7d704-d1ea-42b5-9ea2-7f3ff0dac86e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="4ff0e5e0-c16d-4730-b33b-b835428e65b6" />
+          </association>
+          <association Id="70079c03-8b29-44bc-9391-8a37c91c96cf" isDerived="false" sourceEndRoleName="Client" targetEndRoleName="Inscription  Client" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="ef467fcc-2547-404f-b69b-65b4f847494a" LastKnownName="Inscription  Client" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="082ea518-6c5c-4250-8d3f-d56dfb2a5089" name="Client" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="633cd776-c272-4cde-9ab7-1e990a76b358" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d985f77e-8ba4-478c-9a01-160e6bdce427" name="Inscription  Client" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="6cdaec1b-b78a-41f8-9864-c11659f63098" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="bae1681c-3b8f-4b83-99d8-691ca8f2b925" />
+          </association>
+          <association Id="18466473-088e-4cb8-99af-92f9b50489db" isDerived="false" sourceEndRoleName="Client" targetEndRoleName="Création de commande" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="9930d45c-f1b7-46f0-9336-56981b663489" LastKnownName="Création de commande/remplissage" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="befac0b7-1837-4001-b4a4-7a1615488476" name="Client" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="44c4dfb3-c70f-4f85-bfb5-8d15a24d0e02" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="353f47d3-80a0-4fb3-9e95-89cbf2c50a28" name="Création de commande" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="d67607f7-89f5-4cf5-ab5f-5d60d82596f8" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="dd815869-811f-4ead-ac58-ce328c8b810f" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="45551fa4-0d65-4752-b4c5-6d55628b8677" name="Consultation  Catalogue" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="8b860731-7395-4728-afb8-e8273e488e5e" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="9930d45c-f1b7-46f0-9336-56981b663489" name="Création de commande/remplissage" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="d94d7c41-d0c8-4e07-a34c-20c02be3de2d" />
+        <suppliersInternal>
+          <dependency Id="5acf1fdc-f29a-46db-980f-4741870e8952">
+            <useCaseMoniker Id="e819da5c-a7c1-4a00-b9a7-39dc1ac48977" LastKnownName="Modification statue commande" />
+            <elementDefinition Id="395f68af-dca9-4ba1-b767-090acb1074a9" />
+          </dependency>
+          <dependency Id="cbf32989-7c11-4e59-a1f9-ce92d5c67d9a">
+            <useCaseMoniker Id="ef467fcc-2547-404f-b69b-65b4f847494a" LastKnownName="Inscription  Client" />
+            <elementDefinition Id="5abada25-2088-4ba7-b702-07b15e710895" />
+          </dependency>
+        </suppliersInternal>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="ef467fcc-2547-404f-b69b-65b4f847494a" name="Inscription  Client" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="37909860-9df0-4c3a-b8d0-1f45932415bb" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="bc6c5694-8566-40fc-b9aa-02569ee5f6cf" name="Service Client" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="c251a4ef-4c01-4740-826f-17d6a2314074" />
+        <targetEnds>
+          <association Id="dd851ba4-ccd0-4376-bcc9-9ccfb3043816" isDerived="false" sourceEndRoleName="Service Client" targetEndRoleName="Inscription  Client" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="ef467fcc-2547-404f-b69b-65b4f847494a" LastKnownName="Inscription  Client" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="264e7d0d-4c1c-432f-9384-96ab9b1292ce" name="Service Client" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="7fa8d77a-5115-4d7e-aaba-a5c9cc17ebb4" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="2efa694b-0595-416d-8684-6588bc57a6fd" name="Inscription  Client" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="237c4d6c-cee7-46e6-ac88-69a1ee43a790" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="7ac030f2-df00-44ec-afc3-0d22b030c168" />
+          </association>
+          <association Id="48277112-e5d1-469f-b0bd-8d7a11bb36bf" isDerived="false" sourceEndRoleName="Service Client" targetEndRoleName="Modification statue commande" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="e819da5c-a7c1-4a00-b9a7-39dc1ac48977" LastKnownName="Modification statue commande" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="b8811d52-36dc-4144-b066-9c9d019c3449" name="Service Client" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="a886c3d3-00af-43bd-b229-4abaac1151cd" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="cf55a857-d057-495f-9e3c-9c1e1b003dbc" name="Modification statue commande" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="8915c6d1-ac86-4057-9600-1a16812bb909" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="99b4999c-b7c3-4354-84fa-37100f062f2f" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="e819da5c-a7c1-4a00-b9a7-39dc1ac48977" name="Modification statue commande" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="154853fd-e507-4664-90e0-da6c6542c3e5" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+  </packagedElements>
+  <package Id="f851ab11-96b0-4290-841e-695e7f30cd6c" name="ModelingProject1">
+    <elementDefinition Id="749f0646-8714-4980-8ae6-dcafcfd9c165" />
+  </package>
+</useCaseModelRoot>
