@@ -47,6 +47,7 @@ namespace ClassLibrary1
             ActivationObjetCache();
             InitializeTBpourModif();
             InitializeCB_ContactClientListNom();
+            CB_ContactClient.SelectedValue = Convert.ToInt32(TB_IDContact.Text);
             B_Valider.Text = "Modifier Ok";
         }
 
@@ -95,9 +96,11 @@ namespace ClassLibrary1
             DesactivationObjetCache();
             AggrandirFenetre();
             B_Valider.Enabled = true;
+            
 
             Switch = 3;
             InitializeTBpourModif();
+            CB_ContactClient.SelectedValue = Convert.ToInt32(TB_IDContact.Text);
             B_Valider.Text = "Supprimer Ok";
         }
         public void DesactivationObjetCache()
@@ -130,7 +133,7 @@ namespace ClassLibrary1
             TB_IDContact.Text = Convert.ToString(c.IDContactClient);
             //CB_ContactClient.DisplayMember = Convert.ToString(cc.IDContactClient);
 
-            CB_ContactClient.SelectedValue = Convert.ToString(cc.IDContactClient); 
+            CB_ContactClient.SelectedValue = Convert.ToString(c.IDContactClient); 
 
             //CB_ContactClient.Text += Convert.ToString(cc.NomContactClient);
             TB_Coef.Text = Convert.ToString(c.CoefClient);
