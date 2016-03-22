@@ -52,6 +52,8 @@
     <Compile Include="InterfaceInterrogations.Designer.cs">
       <DependentUpon>InterfaceInterrogations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Produit.cs" />
+    <Compile Include="ProduitDAO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="InterfaceInterrogations.resx">
